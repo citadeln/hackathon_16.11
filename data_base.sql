@@ -1,7 +1,6 @@
 CREATE TABLE objects_type(   
   id SERIAL primary key,
   name VARCHAR(42) not null default 0,
-  type INTEGER not null default 0,
 );
 
 CREATE TABLE objects(   
@@ -18,48 +17,25 @@ CREATE TABLE wells(
   mest INTEGER not null default 0,
 );
 
-CREATE TABLE PROG_TEST_ACCNT(  
-  ACCNT_CODE bigint not null default 10,
-  ACCNT_ACNT varchar(30) not null,
-  ACCNT_PPL_CODE bigint primary key,
-  ACCNT_CRNC varchar(3) not null,
-  ACCNT_NAME varchar(2000) not null,
-  --constraint uk_PROG_TEST_ACCNT unique (ACCNT_CODE, ACCNT_ACNT, ACCNT_CRNC, ACCNT_NAME),
-  constraint fk_PROG_TEST_ACCNT_BLNC_ACCNT_CODE foreign key (ACCNT_CODE) references PROG_TEST_BLNC(BLNC_ACCNT_CODE)
+СREATE TABLE well_day_histories(   
+  well INTEGER not null,
+  date_fact date not null default current_date primary key,
+  debit FLOAT not null default 0,
+  ee_consume FLOAT not null default 0,
+  expenses FLOAT not null default 0,
+  pump_operating FLOAT not null default 0,
+  constraint fk_well_day_histories_well foreign key (well) references wells(well)
 );
 
-create table PROG_TEST_DOCS(
-  DOC_PPL_CODE bigint primary key,
-  DOC_NUM varchar(30) not null,
-  DOC_SERIES varchar(30) not null,
-  DOC_TYPE varchar(30) not null,
-  DOC_DATE date not null
+СREATE TABLE well_day_plans(   
+  well INTEGER not null,
+  date_plan date not null default current_date primary key,
+  debit FLOAT not null default 0,
+  ee_consume FLOAT not null default 0,
+  expenses FLOAT not null default 0,
+  pump_operating FLOAT not null default 0,
+  constraint fk_well_day_histories_well foreign key (well) references wells(well)
 );
-
-insert into PROG_TEST_DOCS values (1, '1f', 'rrr', 'd', '2021-08-01');
-insert into PROG_TEST_DOCS values (2, '2f', 'rrr', 'g', '2024-03-01');
-insert into PROG_TEST_DOCS values (3, '2f', 'ttt', '0', '2023-01-02');
-insert into PROG_TEST_DOCS values (5, '3f', 'hhh', 'r','2022-01-03');
-
-
-create table PROG_TEST_ADDRESS(
-  ADDR_PPL_CODE bigint primary key,
-  ADDR_CITY varchar(200) not null,
-  ADDR_STREET varchar(200) not null,
-  ADDR_HOUSE varchar(200) not null,
-  ADDR_FLAT varchar(20) not null
-);
-
-create table PROG_TEST_PEOPLE( 
-  PPL_CODE bigint not null,
-  PPL_NAME varchar(2000) not null,
-  PPL_PPL_CODE bigint primary key,
-  --constraint uk_PROG_TEST_PEOPLE unique (PPL_CODE, PPL_NAME, PPL_PPL_CODE),
-  constraint fk_PPL_PPL_CODE_DOCS foreign key (PPL_CODE) references PROG_TEST_DOCS(DOC_PPL_CODE),
-  constraint fk_PPL_PPL_CODE_ADDRESS foreign key (PPL_CODE) references PROG_TEST_ADDRESS(ADDR_PPL_CODE),
-  constraint fk_PPL_PPL_CODE_ACCNT foreign key (PPL_PPL_CODE) references PROG_TEST_ACCNT(ACCNT_PPL_CODE)
-);
-
 
 insert into PROG_TEST_PEOPLE values (1, 'Anna', 166);
 insert into PROG_TEST_PEOPLE values (2, 'Andrey', 211);
