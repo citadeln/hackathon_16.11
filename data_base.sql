@@ -1,9 +1,13 @@
-CREATE TABLE wells(   
-  well INTEGER primary key,
-  ngdu INTEGER not null default 0,
-  cdng INTEGER not null default 0,
-  kust INTEGER not null default 0,
-  mest INTEGER not null default 0,
+CREATE TABLE objects_type(   
+  id SERIAL primary key,
+  name VARCHAR(42) not null default 0,
+  type INTEGER not null default 0,
+);
+
+CREATE TABLE objects(   
+  id SERIAL primary key,
+  name VARCHAR(42) not null default 0,
+  type INTEGER not null default 0,
 );
 
 CREATE TABLE wells(   
