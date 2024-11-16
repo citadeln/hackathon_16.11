@@ -19,7 +19,7 @@ CREATE TABLE wells (
 );
 
 CREATE TABLE well_day_histories (   
-  well INTEGER NOT NULL PRIMARY KEY,
+  well INTEGER NOT NULL,
   date_fact DATE NOT NULL DEFAULT current_date,
   debit FLOAT NOT NULL DEFAULT 0,
   ee_consume FLOAT NOT NULL DEFAULT 0,
