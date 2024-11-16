@@ -39,7 +39,3 @@ CREATE TABLE well_day_plans (
   PRIMARY KEY (well, date_plan),
   CONSTRAINT fk_well_day_plans_well FOREIGN KEY (well) REFERENCES wells(well)
 );
-
-SELECT * FROM wells;
-
-insert into well_day_plans (well, date_plan, debit, ee_consume, expenses, pump_operating) values (1111, '2024-03-09', 30,508.56,1.35,24);
