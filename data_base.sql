@@ -15,7 +15,11 @@ CREATE TABLE wells (
   ngdu INTEGER NOT NULL DEFAULT 0,
   cdng INTEGER NOT NULL DEFAULT 0,
   kust INTEGER NOT NULL DEFAULT 0,
-  mest INTEGER NOT NULL DEFAULT 0
+  mest INTEGER NOT NULL DEFAULT 0,
+  CONSTRAINT fk_objects_ngdu FOREIGN KEY (ngdu) REFERENCES "objects"(type),
+  CONSTRAINT fk_objects_cdng FOREIGN KEY (cdng) REFERENCES "objects"(type),
+  CONSTRAINT fk_objects_kust FOREIGN KEY (kust) REFERENCES "objects"(type),
+  CONSTRAINT fk_objects_mest FOREIGN KEY (mest) REFERENCES "objects"(type)
 );
 
 CREATE TABLE well_day_histories (   
