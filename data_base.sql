@@ -19,23 +19,27 @@ CREATE TABLE wells (
 );
 
 CREATE TABLE well_day_histories (   
-  well INTEGER NOT NULL,
-  date_fact DATE NOT NULL DEFAULT current_date PRIMARY KEY,
+  well INTEGER NOT NULL PRIMARY KEY,
+  date_fact DATE NOT NULL DEFAULT current_date,
   debit FLOAT NOT NULL DEFAULT 0,
   ee_consume FLOAT NOT NULL DEFAULT 0,
   expenses FLOAT NOT NULL DEFAULT 0,
   pump_operating FLOAT NOT NULL DEFAULT 0,
+  PRIMARY KEY (well, date_fact),
   CONSTRAINT fk_well_day_histories_well FOREIGN KEY (well) REFERENCES wells(well)
 );
 
 CREATE TABLE well_day_plans (   
   well INTEGER NOT NULL,
-  date_plan DATE NOT NULL DEFAULT current_date PRIMARY KEY,
+  date_plan DATE NOT NULL DEFAULT current_date,
   debit FLOAT NOT NULL DEFAULT 0,
   ee_consume FLOAT NOT NULL DEFAULT 0,
   expenses FLOAT NOT NULL DEFAULT 0,
   pump_operating FLOAT NOT NULL DEFAULT 0,
+  PRIMARY KEY (well, date_plan),
   CONSTRAINT fk_well_day_plans_well FOREIGN KEY (well) REFERENCES wells(well)
 );
 
 SELECT * FROM wells;
+
+insert into well_day_plans (well, date_plan, debit, ee_consume, expenses, pump_operating) values (1111, '2024-03-09', 30,508.56,1.35,24);
