@@ -1,15 +1,3 @@
-CREATE TABLE "objects_type" (   
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(42)
-);
-
-CREATE TABLE objects (   
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(42),
-  type INTEGER NOT NULL DEFAULT 0,
-  CONSTRAINT fk_objects_type FOREIGN KEY (type) REFERENCES "objects_type"(id)
-);
-
 CREATE TABLE wells (   
   well INTEGER PRIMARY KEY,
   ngdu INTEGER NOT NULL DEFAULT 0,
@@ -21,6 +9,19 @@ CREATE TABLE wells (
   CONSTRAINT fk_objects_kust FOREIGN KEY (kust) REFERENCES "objects"(type),
   CONSTRAINT fk_objects_mest FOREIGN KEY (mest) REFERENCES "objects"(type)
 );
+
+CREATE TABLE objects (   
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(42),
+  type INTEGER NOT NULL DEFAULT 0,
+  CONSTRAINT fk_objects_type FOREIGN KEY (type) REFERENCES "objects_type"(id)
+);
+
+CREATE TABLE "objects_type" (   
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(42)
+);
+
 
 CREATE TABLE well_day_histories (   
   well INTEGER NOT NULL,
