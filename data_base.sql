@@ -37,9 +37,9 @@ CREATE TABLE wells(
   constraint fk_well_day_histories_well foreign key (well) references wells(well)
 );
 
-insert into PROG_TEST_PEOPLE values (1, 'Anna', 166);
-insert into PROG_TEST_PEOPLE values (2, 'Andrey', 211);
-insert into PROG_TEST_PEOPLE values (3, 'Kate', 333);
-insert into PROG_TEST_PEOPLE values (4, 'Denis', 131);
+-- insert into PROG_TEST_PEOPLE values (1, 'Anna', 166);
+-- insert into PROG_TEST_PEOPLE values (2, 'Andrey', 211);
+-- insert into PROG_TEST_PEOPLE values (3, 'Kate', 333);
+-- insert into PROG_TEST_PEOPLE values (4, 'Denis', 131);
 
---SELECT * FROM PROG_TEST_DOCS;
+--SELECT *;
