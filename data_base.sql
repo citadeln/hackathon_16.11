@@ -39,3 +39,6 @@ CREATE TABLE well_day_plans (
   PRIMARY KEY (well, date_plan),
   CONSTRAINT fk_well_day_plans_well FOREIGN KEY (well) REFERENCES wells(well)
 );
+
+INSERT INTO wells (well, ngdu, cdng, kust, mest) 
+VALUES (1111, 0, 0, 0, 0);
