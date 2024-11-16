@@ -1,0 +1,30 @@
+{% extends "main/layout.html" %}
+
+{% block content %}
+
+<div class="dashboard_content">
+    <h1>Участники соревнований</h1>
+    <table class="admin_main2 admin_dashboard">
+        <table class="admin_table table3">
+            <thead>
+                <tr>
+                    <th>Участник</th>
+                    <th>Учитель</th>
+                    <th>Соревнование</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.id.username }}</td>
+                    <td>{{ student.teacher_id.username }}</td>
+                    <td>{{ student.competition_id.title }}</td>
+                    <td><a href="{% url 'view_grade_submissions' student_id=student.id.id %}">Просмотр решений</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </table>
+</div>
+{% endblock %}

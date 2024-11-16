@@ -1,0 +1,35 @@
+{% extends "main/layout.html" %}
+
+{% load my_custom_filters %}
+{% block content %}
+<h1 style="margin-left: 100px;">Решения заданий участника</h1>
+
+{% for submission in submissions %}
+<form method="post">
+    {% csrf_token %}
+    <table class="admin_table table3">
+        <thead>
+            <tr>
+                <th>Задание</th>
+                <th>Файл</th>
+                <th>Оценка</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ submission.task.title }}</td>
+                <td><a href="{{ submission.file.url }}">Скачать</a></td>
+                <td>
+                    {{ forms|get_item:submission.id }}
+                    <input type="hidden" name="submission_id" value="{{ submission.id }}">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <button type="submit">Сохранить оценку</button>
+</form>
+{% endfor %}
+<div style="margin-bottom: 100px;" ></div>
+
+{% endblock %}

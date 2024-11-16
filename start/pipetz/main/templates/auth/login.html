@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Вход</title>
+    <link rel="stylesheet" href="{% static 'main/css/login.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    ></script>
+  </head>
+  <body>
+    <form
+      class="container d-flex justify-content-center"
+      method="post"
+      action="{% url 'login' %}?next=/profile/"
+    >
+      {% csrf_token %}
+      <div class="card mx-5 my-5">
+        <div class="card-body py-2 px-2">
+          <h2 class="card-heading py-3 px-5">Log In</h2>
+          <div class="row rone mx-3 my-3">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputEmail" class="sr-only">Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  class="form-control"
+                  id="inputEmail"
+                  placeholder="Username"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  id="inputPassword"
+                  placeholder="Password"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row rtwo mx-3">
+            <div class="col-md-6">
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary mb-2">
+                  Log In
+                </button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <a href="#" class="forgot">Forgot your Password?</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>

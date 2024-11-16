@@ -1,0 +1,47 @@
+{% extends 'main/layout.html' %}
+  
+
+{% block title %}Новости федерации{% endblock %}
+{% block content %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slider = document.querySelector('.news-slider');
+            const btnLeft = document.querySelector('.scroll-btn.left');
+            const btnRight = document.querySelector('.scroll-btn.right');
+
+            // Проверяем наличие элементов перед добавлением обработчиков
+            if (slider && btnLeft && btnRight) {
+                btnLeft.addEventListener('click', function () {
+                    slider.scrollBy({ left: -600, behavior: 'smooth' });
+                });
+
+                btnRight.addEventListener('click', function () {
+                    slider.scrollBy({ left: 600, behavior: 'smooth' });
+                });
+            } else {
+                console.error('One of the elements (slider, btnLeft, btnRight) is not found.');
+            }
+        });
+    </script>
+
+    <div class="federation_news">
+        <h2 class="federation_news_h2">Новости федерации</h2>
+
+        <div class="news-slider-wrapper">
+            <button class="scroll-btn left">&lt;</button> <!-- Стрелка влево -->
+            <div class="news-slider">
+                {% for el in news %}
+                    <div class="news-item">
+                        <img class="news_img" src="https://vsluh.ru/upload/iblock/b1e/70wq3x79hrijkv450uz3kyoylmmqmiq1.jpg" alt="Новость 1">
+                        <div class="news-item_txt">
+                            <h3>{{ el.title }}</h3>
+                            <p>{{ el.anons }}</p>
+                            <a href="{% url 'news-detail' el.id %}" class="">Читать далее...</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="scroll-btn right">&gt;</button> <!-- Стрелка вправо -->
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,185 @@
+{% extends 'main/layout.html' %} {% load static %} {% block title %}{% endblock %}
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}" />
+{% block content %}
+<div class="start_img">
+  <img src="{% static 'main/img/background.svg' %}" alt="" />
+</div>
+
+<div class="top-gradient">
+  <div class="start_info">
+    <h1 class="federation-h1">О федерации</h1>
+    <div class="about_federation">
+      <div class="about_txt">
+        <p>
+          В современном мире спортивная федерация играет ключевую роль в
+          развитии и популяризации различных видов спорта. Наша основная цель —
+          предоставить каждому спортсмену возможность раскрыть свой потенциал и
+          достичь высот на международной арене. Мы не просто организуем
+          соревнования, но и создаем уникальные условия для тренировок и
+          подготовки.
+        </p>
+        <p>
+          Федерация активно сотрудничает с ведущими тренерами и спортивными
+          специалистами, чтобы внедрять передовые методики и технологии в
+          тренировочный процесс. Мы уверены, что качественная подготовка
+          спортсменов — залог их успеха на любых соревнованиях.
+        </p>
+        <p>
+          Одним из наших приоритетов является поддержка молодых талантов. Мы
+          реализуем программы, направленные на выявление и развитие юных
+          спортсменов, обеспечивая их всем необходимым для роста и достижения
+          высоких результатов. Совместно с образовательными учреждениями мы
+          организуем специальные курсы и семинары, направленные на повышение
+          квалификации тренеров и специалистов в области спорта.
+        </p>
+        <p>
+          Наша федерация также активно занимается популяризацией здорового
+          образа жизни среди населения. Мы проводим массовые спортивные
+          мероприятия, марафоны и акции, привлекая к участию людей всех
+          возрастов. Важно отметить, что наши усилия направлены не только на
+          развитие профессионального спорта, но и на улучшение здоровья нации в
+          целом.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee-container">
+    <div class="marquee">
+      <span>Федерация спортивного программирования СУРГУТ </span>
+      <span>/</span>
+      <span>Федерация спортивного программирования СУРГУТ </span>
+      <span>/</span>
+      <span>Федерация спортивного программирования СУРГУТ </span>
+      <span>/</span>
+      <span>Федерация спортивного программирования СУРГУТ </span>
+      <span>/</span>
+      <span>Федерация спортивного программирования СУРГУТ </span>
+      <span>/</span>
+      <span>Федерация спортивного программирования СУРГУТ </span>
+      <span>/</span>
+      <span>Федерация спортивного программирования СУРГУТ </span>
+    </div>
+    <div class="marquee marquee2">
+      <span>Федерация спортивного программирования СУРГУТ </span>
+      <span>/</span>
+      <span>Федерация спортивного программирования СУРГУТ </span>
+      <span>/</span>
+      <span>Федерация спортивного программирования СУРГУТ </span>
+      <span>/</span>
+      <span>Федерация спортивного программирования СУРГУТ </span>
+      <span>/</span>
+      <span>Федерация спортивного программирования СУРГУТ </span>
+      <span>/</span>
+      <span>Федерация спортивного программирования СУРГУТ </span>
+      <span>/</span>
+      <span>Федерация спортивного программирования СУРГУТ </span>
+    </div>
+  </div>
+
+  <div class="competitions">
+    <h2 class="h2_competitions">Соревнования</h2>
+    <div class="competitions_list">
+      {% if not competitions %}
+      <h1>Нет доступных для записи соревнований</h1>
+      {% else %}
+      <table class="competitions_table">
+        <tbody>
+          {% for el in competitions %}
+          <tr>
+            <td>{{ el.title }}</td>
+            <td>Количество свободных мест: {{ el.places }}</td>
+            <td>{{ el.date|date:"d M Y H:i" }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <button id="btn-open" class="competition_btn">Участвовать</button>
+      {% endif %}
+    </div>
+
+    <div id="competition-modal" class="modal">
+      <div class="modal_box">
+        <span class="close" id="close-modal">&times;</span>
+        <h2 class="modal-h2">{{ username }}</h2>
+        <div class="modal-content">
+          <div class="form-group">
+            <label for="competition">Соревнование</label>
+            <select id="competition" name="competition">
+              {% for el in competitions %}
+              <option value="{{ el.id }}">{{ el.title }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div id="students-container">
+            <div class="form-group student-entry">
+              <input type="text" id="student-name" placeholder="ФИО студента" />
+              <input type="email" id="student-email" placeholder="Эл. почта" />
+              <span class="remove-student">&times;</span>
+            </div>
+          </div>
+
+          <div class="form-group add-student" id="add-student">
+            <span>+</span>
+            <span style="color: rgba(146, 160, 161, 1)">Добавить ученика</span>
+          </div>
+
+          <button id="participate-button">Участвовать</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'main/js/main.js' %}"></script>
+
+  <div class="federation_news">
+    <h2 class="federation_news_h2">Новости федерации</h2>
+
+    <div class="news-slider-wrapper">
+      <button class="scroll-btn left">&lt;</button>
+      <div class="news-slider">
+        {% for el in articles %}
+        <div class="news-item">
+          <img
+            class="news_img"
+            src="https://vsluh.ru/upload/iblock/b1e/70wq3x79hrijkv450uz3kyoylmmqmiq1.jpg"
+            alt="Новость 1"
+          />
+          <div class="news-item_txt">
+            <h3>{{ el.title }}</h3>
+            <p>{{ el.anons }}</p>
+            <a href="{% url 'news-detail' el.id %}" class="">Читать далее...</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <button class="scroll-btn right">&gt;</button>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const slider = document.querySelector(".news-slider");
+        const btnLeft = document.querySelector(".scroll-btn.left");
+        const btnRight = document.querySelector(".scroll-btn.right");
+
+        // Проверяем наличие элементов перед добавлением обработчиков
+        if (slider && btnLeft && btnRight) {
+          btnLeft.addEventListener("click", function () {
+            slider.scrollBy({ left: -600, behavior: "smooth" });
+          });
+
+          btnRight.addEventListener("click", function () {
+            slider.scrollBy({ left: 600, behavior: "smooth" });
+          });
+        } else {
+          console.error(
+            "One of the elements (slider, btnLeft, btnRight) is not found."
+          );
+        }
+      });
+    </script>
+  </div>
+  <!--    {% include 'main/test.html' %}-->
+  {% endblock %}
+</div>

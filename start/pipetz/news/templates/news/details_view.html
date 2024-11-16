@@ -1,0 +1,25 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+    <div class="news_post" style="height: 100vh;">
+        <div class="features">
+            <div class="features_top">
+                <h1>{{ article.title }}</h1>
+                <a href="{% url 'news_home' %}" class="news_back">К новостям</a>
+            </div>
+
+            <div class="features_txt">
+                <p>{{ article.full_text }}</p>
+                <p>{{ article.date }}</p>
+            </div>
+
+            <div class="features_btn">
+                <a href="{% url 'news-update' article.id %}" class="" >Редактировать статью</a>
+                <a href="{% url 'news-delete' article.id %}" class="" >Удалить статью</a>
+            </div>
+
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+body {
+    background-color: #313e48;
+    font-family: "Exo 2", sans-serif;
+    font-style: normal;
+}
+
+h1{
+    color: #ffffff;
+}
+p{
+    font-size: 20px;
+}
+
+.btn.btn-link {
+    color: chocolate;
+}
+
+.img-fluid {
+    width: 80%;
+}
+
+.btn-primary {
+    background-color: rgb(23, 97, 91);
+}
+.detail-image {
+    width: 10%;
+}
