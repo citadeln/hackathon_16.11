@@ -45,8 +45,8 @@ CREATE TABLE well_day_plans (
     CONSTRAINT fk_well_day_plans_well FOREIGN KEY (well) REFERENCES wells(well)
 );
 
-INSERT INTO objects_type (id, name) VALUES (1, '���� (������������������� ����������)');
-INSERT INTO objects_type (id, name) VALUES (2, '���� (��� ������ ����� � ����)');
-INSERT INTO objects_type (id, name) VALUES (3, '���� �������');
-INSERT INTO objects_type (id, name) VALUES (4, '��������');
-INSERT INTO objects_type (id, name) VALUES (5, '�������������');
+INSERT INTO objects_type (id, name) VALUES (1, 'скважина(Ресурсный источник)');
+INSERT INTO objects_type (id, name) VALUES (2, 'НГДУ (нефтегазодобывающее управление)');
+INSERT INTO objects_type (id, name) VALUES (3, 'ЦДНГ (цех добычи нефти и газа)');
+INSERT INTO objects_type (id, name) VALUES (4, 'Куст (кустовая площадка)');
+INSERT INTO objects_type (id, name) VALUES (5, 'Месторождение (дополнительные названия: энергетический резервуар, углеводородный бассейн, ресурсный массив и т.д.');
