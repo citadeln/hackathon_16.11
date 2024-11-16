@@ -1,12 +1,13 @@
-CREATE TABLE objects_type(   
+CREATE TABLE "objects_type"(   
   id SERIAL primary key,
-  name VARCHAR(42) not null default 0,
+  name VARCHAR(42)
 );
 
 CREATE TABLE objects(   
   id SERIAL primary key,
   name VARCHAR(42) not null default 0,
   type INTEGER not null default 0,
+  constraint fk_objects_type foreign key (type) objects_type(id)
 );
 
 CREATE TABLE wells(   
@@ -14,7 +15,7 @@ CREATE TABLE wells(
   ngdu INTEGER not null default 0,
   cdng INTEGER not null default 0,
   kust INTEGER not null default 0,
-  mest INTEGER not null default 0,
+  mest INTEGER not null default 0
 );
 
 СREATE TABLE well_day_histories(   
