@@ -8,7 +8,6 @@ CREATE TABLE objects (
     name VARCHAR(42) NOT NULL,
     type INTEGER NOT NULL DEFAULT 0
 );
-    --CONSTRAINT fk_objects_type FOREIGN KEY (type) REFERENCES "objects_type"(id)
 
 CREATE TABLE wells (
     well INTEGER PRIMARY KEY,
